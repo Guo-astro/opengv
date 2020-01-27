@@ -149,7 +149,8 @@ struct OptimizeNonlinearFunctor1 : OptimizationFunctor<double>
 
 transformation_t optimize_nonlinear(
     PointCloudAdapterBase & adapter,
-    const Indices & indices )
+    const Indices & indices,
+    size_t iterations )
 {
   const int n=6;
   VectorXd x(n);
@@ -164,7 +165,7 @@ transformation_t optimize_nonlinear(
   lm.resetParameters();
   lm.parameters.ftol = 1.E10*NumTraits<double>::epsilon();
   lm.parameters.xtol = 1.E10*NumTraits<double>::epsilon();
-  lm.parameters.maxfev = 1000;
+  lm.parameters.maxfev = iterations;
   lm.minimize(x);
 
   transformation_t transformation;
@@ -177,17 +178,20 @@ transformation_t optimize_nonlinear(
 }
 
 opengv::transformation_t
-opengv::point_cloud::optimize_nonlinear( PointCloudAdapterBase & adapter )
+opengv::point_cloud::optimize_nonlinear( 
+    PointCloudAdapterBase & adapter,
+    size_t iterations )
 {
   Indices idx(adapter.getNumberCorrespondences());
-  return optimize_nonlinear(adapter,idx);
+  return optimize_nonlinear(adapter,idx,iterations);
 }
 
 opengv::transformation_t
 opengv::point_cloud::optimize_nonlinear(
     PointCloudAdapterBase & adapter,
-    const std::vector<int> & indices )
+    const std::vector<int> & indices,
+    size_t iterations )
 {
   Indices idx(indices);
-  return optimize_nonlinear(adapter,idx);
+  return optimize_nonlinear(adapter,idx,iterations);
 }

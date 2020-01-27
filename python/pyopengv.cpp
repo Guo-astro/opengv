@@ -246,11 +246,12 @@ py::object upnp( pyarray_d &v, pyarray_d &p )
 py::object optimize_nonlinear( pyarray_d &v,
                                pyarray_d &p,
                                pyarray_d &t,
-                               pyarray_d &R )
+                               pyarray_d &R,
+                               size_t iterations )
 {
   CentralAbsoluteAdapter adapter(v, p, t, R);
   return arrayFromTransformation(
-    opengv::absolute_pose::optimize_nonlinear(adapter));
+    opengv::absolute_pose::optimize_nonlinear(adapter,iterations));
 }
 
 py::object ransac(
@@ -487,11 +488,12 @@ py::object sixpt( pyarray_d &b1, pyarray_d &b2 )
 py::object optimize_nonlinear( pyarray_d &b1,
                                pyarray_d &b2,
                                pyarray_d &t12,
-                               pyarray_d &R12 )
+                               pyarray_d &R12,
+                               size_t iterations )
 {
   CentralRelativeAdapter adapter(b1, b2, t12, R12);
   return arrayFromTransformation(
-    opengv::relative_pose::optimize_nonlinear(adapter));
+    opengv::relative_pose::optimize_nonlinear(adapter,iterations));
 }
 
 py::object ransac(
