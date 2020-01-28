@@ -482,7 +482,7 @@ transformation_t seventeenpt(
  *         viewpoint 1, and \f$ \mathbf{R} \f$ being the rotation from
  *         viewpoint 2 to viewpoint 1).
  */
-transformation_t optimize_nonlinear( RelativeAdapterBase & adapter );
+transformation_t optimize_nonlinear( RelativeAdapterBase & adapter, size_t iterations=1000 );
 
 /**
  * \brief Compute the pose between two viewpoints using nonlinear optimization.
@@ -499,7 +499,8 @@ transformation_t optimize_nonlinear( RelativeAdapterBase & adapter );
  */
 transformation_t optimize_nonlinear(
     RelativeAdapterBase & adapter,
-    const std::vector<int> & indices );
+    const std::vector<int> & indices,
+    size_t iterations=1000 );
 
 }
 }

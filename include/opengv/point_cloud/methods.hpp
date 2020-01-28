@@ -95,7 +95,7 @@ transformation_t threept_arun(
  *         frame 1, and \f$ \mathbf{R} \f$ being the rotation from
  *         frame 2 to frame 1).
  */
-transformation_t optimize_nonlinear( PointCloudAdapterBase & adapter );
+transformation_t optimize_nonlinear( PointCloudAdapterBase & adapter, size_t iterations=1000 );
 
 /**
  * \brief Compute the transformation between two frames containing point clouds.
@@ -112,7 +112,8 @@ transformation_t optimize_nonlinear( PointCloudAdapterBase & adapter );
  */
 transformation_t optimize_nonlinear(
     PointCloudAdapterBase & adapter,
-    const std::vector<int> & indices );
+    const std::vector<int> & indices,
+    size_t iterations=1000 );
 
 }
 }

@@ -297,7 +297,7 @@ transformations_t upnp(
  *         from viewpoint to world frame, transforms points from viewpoint to
  *         world frame).
  */
-transformation_t optimize_nonlinear( const AbsoluteAdapterBase & adapter );
+transformation_t optimize_nonlinear( const AbsoluteAdapterBase & adapter, size_t iterations=1000 );
 
 /**
  * \brief Compute the pose of a viewpoint using nonlinear optimization. Works
@@ -314,7 +314,8 @@ transformation_t optimize_nonlinear( const AbsoluteAdapterBase & adapter );
  */
 transformation_t optimize_nonlinear(
     const AbsoluteAdapterBase & adapter,
-    const std::vector<int> & indices );
+    const std::vector<int> & indices,
+    size_t iterations=1000 );
 
 }
 }

@@ -173,7 +173,7 @@ def test_relative_pose():
         d.bearing_vectors1, d.bearing_vectors2, R_perturbed)
     t_perturbed, R_perturbed = getPerturbedPose(d.position, d.rotation, 0.1)
     nonlinear_transformation = pyopengv.relative_pose_optimize_nonlinear(
-        d.bearing_vectors1, d.bearing_vectors2, t_perturbed, R_perturbed)
+        d.bearing_vectors1, d.bearing_vectors2, t_perturbed, R_perturbed, 1000)
 
     assert proportional(d.position, twopt_translation)
     assert matrix_in_list(d.essential, fivept_nister_essentials)
